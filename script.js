@@ -113,3 +113,30 @@ function loadCompanies() {
     console.log("Companies loaded:", Array.from(companies));
 }
 
+// Filter stuff when someone searches
+function filterJobs() {
+    let continentPick = document.getElementById("continent").value.toLowerCase();
+    let catPick = document.getElementById("category").value.toLowerCase();
+    let compPick = document.getElementById("companySelect").value.toLowerCase(); // updated from text input
+    let searchComp = document.getElementById("company").value.toLowerCase().trim(); // keep text input too
+
+    console.log("Searching with:", continentPick, catPick, compPick, searchComp);
+
+    let matches = jobListings.filter(job => {
+        let contMatch = !continentPick || (job.continent.toLowerCase() == continentPick);
+        let tags = job.tags.map(t => t.toLowerCase());
+        let catMatch = !catPick || tags.includes(catPick);
+        let compMatch = !compPick || job.company_name.toLowerCase() == compPick;
+        let textMatch = !searchComp || job.company_name.toLowerCase().includes(searchComp);
+
+        if (!contMatch || !catMatch || !compMatch || !textMatch) {
+            console.log(`Dropped ${job.title}:`, {contMatch, catMatch, compMatch, textMatch});
+        }
+
+        return contMatch && catMatch && compMatch && textMatch;
+    });
+
+    showJobs(matches);
+}
+
+
