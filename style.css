@@ -1,8 +1,8 @@
 :root {
   --primary-color: #007bff;
   --primary-hover: #0056b3;
-  --background: #f0f4f8;
-  --card-bg: rgba(255, 255, 255, 0.9);
+  --background: #4876a3;
+  --card-bg: rgba(143, 142, 142, 0.9);
   --text-dark: #2c3e50;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
@@ -42,7 +42,7 @@ header {
 
 h1 {
   font-size: 2.5rem;
-  color: #ffffff;
+  color: #a30202;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
