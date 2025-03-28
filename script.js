@@ -12,3 +12,48 @@ const sampleJobs = [
     {title: "Wildlife Biologist", company_name: "EcoAfrica", location: "Nairobi, Kenya", continent: "Africa", description: "Watch animals", tags: ["Science", "Biology", "FullTime"], url: "https://example.com/apply/10"}
 ];
 
+let jobListings = [];
+let jobCats = new Set();
+let companies = new Set(); // new set for company names, sweet!
+
+// Kick things off
+function startLoadingJobs() {
+    let jobsDiv = document.getElementById('jobList');
+    jobsDiv.innerHTML = "<p>Hang on, grabbing jobs...</p>";
+
+    fetch('https://remoteok.io/api', {mode: 'cors'})
+    .then(response => {
+        if (!response.ok) throw new Error("Oops, API messed up: " + response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log("Got some jobs:", data); // peek at what we got
+        jobListings = data.slice(1).map(job => { // skip first weird meta thing
+            let whereItsAt = figureOutContinent(job.location || "Remote");
+            let jobTags = job.tags && Array.isArray(job.tags) ? job.tags.map(t => t.trim()) : ["NoCategory"];
+            console.log(`Job: ${job.position}, Place: ${job.location || "Remote"}, Tags: ${jobTags}`);
+            return {
+                title: job.position,
+                company_name: job.company,
+                location: job.location || "Remote",
+                continent: whereItsAt,
+                description: job.description || "No details, sorry",
+                tags: jobTags,
+                url: job.url || "#"
+            };
+        });
+        jobListings = jobListings.concat(sampleJobs); // toss in my sample ones too
+        loadCategories();
+        loadCompanies(); // new function call here
+        showJobs(jobListings);
+    })
+    .catch(err => {
+        console.log("Fetch failed, dang it:", err);
+        jobsDiv.innerHTML = "<p>API's down, using backup jobs.</p>";
+        jobListings = sampleJobs;
+        loadCategories();
+        loadCompanies(); // gotta load these too on fallback
+        showJobs(jobListings);
+    });
+}
+
