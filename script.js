@@ -139,4 +139,20 @@ function filterJobs() {
     showJobs(matches);
 }
 
+// Show the jobs on the page
+function showJobs(jobsToShow) {
+    let jobArea = document.getElementById("jobList");
+    if (jobsToShow.length == 0) {
+        jobArea.innerHTML = "<p>No luck, try something else!</p>";
+    } else {
+        jobArea.innerHTML = "";
+        jobsToShow.forEach(job => {
+            let div = document.createElement("div");
+            div.className = "job-item";
+            div.innerHTML = `<strong>${job.title}</strong> - ${job.company_name}<br><small>${job.location} (${job.continent})</small>`;
+            div.onclick = () => showDetails(job); // forgot this once, oops
+            jobArea.appendChild(div);
+        });
+    }
+}
 
