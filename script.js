@@ -156,3 +156,17 @@ function showJobs(jobsToShow) {
     }
 }
 
+// Pop up the job details
+function showDetails(job) {
+    let details = document.getElementById("detailsContent");
+    details.innerHTML = `
+    <h3>${job.title}</h3>
+    <p><strong>Company:</strong> ${job.company_name}</p>
+    <p><strong>Where:</strong> ${job.location} (${job.continent})</p>
+    <p><strong>About:</strong> ${job.description}</p>
+    <p><strong>Tags:</strong> ${job.tags.join(", ")}</p>
+    <a href="${job.url}" target="_blank">Apply here</a>
+    `;
+}
+
+startLoadingJobs(); // let’s get going!
