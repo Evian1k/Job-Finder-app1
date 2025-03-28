@@ -36,7 +36,7 @@
             <h2>Job Details</h2>
             <div id="detailsContent">Select a job to view details.</div>
         </section>
-        <secti class="search-container">
+        <section class="search-container">
           <select id="continent">
               <option value="">All Continents</option>
               <option value="Africa">Africa</option>
@@ -48,4 +48,13 @@
               <option value="Antarctica">Antarctica</option>
               <option value="Remote">Remote</option>
           </select>
-          
+          <select id="category">
+              <option value="">All Categories</option>
+          </select>
+          <select id="companySelect">
+              <option value="">Any Company</option>
+          </select>
+          <input type="text" id="company" placeholder="Search company name...">
+          <button onclick="filterJobs()">Search Jobs</button>
+      </section>
+    
