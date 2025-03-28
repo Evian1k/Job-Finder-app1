@@ -96,5 +96,20 @@ function loadCategories() {
     console.log("Categories we got:", Array.from(jobCats));
 }
 
-
+// New function for company dropdown
+function loadCompanies() {
+    let compBox = document.getElementById("companySelect"); // assuming new ID in HTML
+    compBox.innerHTML = "<option value=''>Any Company</option>";
+    companies.clear();
+    jobListings.forEach(job => {
+        if (job.company_name) companies.add(job.company_name);
+    });
+    Array.from(companies).sort().forEach(comp => {
+        let opt = document.createElement("option");
+        opt.value = comp;
+        opt.text = comp;
+        compBox.appendChild(opt);
+    });
+    console.log("Companies loaded:", Array.from(companies));
+}
 
