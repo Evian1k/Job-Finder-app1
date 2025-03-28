@@ -80,6 +80,21 @@ function figureOutContinent(place) {
     return "Dunno";
 }
 
+// Fill up that category dropdown
+function loadCategories() {
+    let catBox = document.getElementById("category");
+    catBox.innerHTML = '<option value="">Pick any category</option>';
+    jobCats.clear();
+    jobListings.forEach(job => {
+        if (job.tags) job.tags.forEach(t => jobCats.add(t));
+    });
+    Array.from(jobCats).sort().forEach(cat => {
+        let opt = document.createElement("option");
+        opt.value = cat; opt.text = cat;
+        catBox.appendChild(opt);
+    });
+    console.log("Categories we got:", Array.from(jobCats));
+}
 
 
 
