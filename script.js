@@ -61,7 +61,28 @@ function startLoadingJobs() {
   });
 }
 
+// Figure out where the heck this job is
+function figureOutContinent(place) {
+  if (!place) return "Dunno";
+  let spot = place.toLowerCase();
+  if (spot.includes("remote") || spot.includes("home")) return "Remote";
 
+  let continents = {
+      "Africa": ["egypt", "nigeria", "kenya", "ghana", "south africa", "morocco"],
+      "Asia": ["china", "india", "japan", "singapore", "korea", "philippines", "thailand"],
+      "Australia": ["australia", "new zealand"],
+      "Europe": ["germany", "france", "uk", "spain", "italy", "poland", "sweden"],
+      "North America": ["usa", "canada", "mexico", "united states"],
+      "South America": ["brazil", "argentina", "chile", "colombia", "peru"],
+      "Antarctica": ["antarctica"]
+  };
+
+  for (let cont in continents) {
+      if (continents[cont].some(c => spot.includes(c))) return cont;
+  }
+  console.log("Couldn’t place this one:", place);
+  return "Dunno";
+}
 
 // DRY function for dropdowns—finally stopped copying code!
 function loadDropdown(dropdownId, itemsSet, defaultText) {
