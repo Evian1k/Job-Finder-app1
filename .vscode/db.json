@@ -1,9 +1,0 @@
-{
-    "jobs": [
-      {"title": "Software Engineer", "company_name": "TechCorp", "location": "Berlin, Germany", "continent": "Europe", "description": "Build cool web stuff", "tags": ["IT", "Software Dev", "FullTime"], "url": "https://example.com/apply/1"},
-      {"title": "Data Analyst", "company_name": "DataSys", "location": "Remote", "continent": "Remote", "description": "Crunch numbers from home", "tags": ["Data", "Remote", "FullTime"], "url": "https://example.com/apply/2"},
-      {"title": "Product Manager", "company_name": "Innovate Ltd", "location": "London, UK", "continent": "Europe", "description": "Boss people around nicely", "tags": ["Management", "Product", "FullTime"], "url": "https://example.com/apply/3"},
-      {"title": "Marketing Specialist", "company_name": "GrowEasy", "location": "Remote", "continent": "Remote", "description": "Make ads that sell", "tags": ["Marketing", "Remote", "FullTime"], "url": "https://example.com/apply/4"}
-    ]
-  }
-  
