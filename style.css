@@ -153,14 +153,3 @@ main {
   text-decoration: underline;
 }
 
-/* mobile stuff, forgot this at first */
-@media (max-width: 768px) {
-  main {
-      grid-template-columns: 1fr;
-  }
-
-  .job-details {
-      grid-column: 1;
-      grid-row: auto;
-  }
-}
